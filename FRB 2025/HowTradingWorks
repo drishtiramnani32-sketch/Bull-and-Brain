@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>How Trading Works - Bull&Brain</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f5f9ff; color: #222; }
+    header { background: #0a2342; color: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+    .logo { font-size: 1.5rem; font-weight: bold; text-decoration: none; color: white; }
+    nav { display: flex; gap: 1rem; align-items: center; }
+    nav a { color: white; text-decoration: none; font-weight: 500; padding: 0.5rem 1rem; border-radius: 5px; }
+    nav a:hover { background: #153e75; }
+    .dropdown { position: relative; }
+    .dropdown-content { display: none; position: absolute; background: #0a2342; min-width: 180px; top: 100%; left: 0; border-radius: 5px; flex-direction: column; z-index: 1000; }
+    .dropdown-content a { padding: 0.5rem 1rem; display: block; color: white; }
+    .dropdown-content a:hover { background: #153e75; }
+    .dropdown.show .dropdown-content { display: flex; }
+    .menu-toggle { display: none; flex-direction: column; cursor: pointer; }
+    .menu-toggle span { background: white; height: 3px; width: 25px; margin: 4px 0; }
+    @media (max-width: 768px) {
+      nav { display: none; flex-direction: column; background: #0a2342; position: absolute; top: 60px; right: 0; width: 220px; padding: 1rem; }
+      nav.active { display: flex; }
+      .dropdown-content { position: relative; top: 0; left: 0; min-width: 100%; }
+      .menu-toggle { display: flex; }
+    }
+    main { text-align: center; padding: 2rem; }
+    h1 { font-size: 2.5rem; color: #0a2342; margin-bottom: 1rem; }
+    p { font-size: 1.1rem; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto; }
+    .video-slider { position: relative; max-width: 1200px; margin: 2rem auto; height: 675px; border-radius: 10px; overflow: hidden; box-shadow: 0 0 15px rgba(0,0,0,0.2); }
+    .video-slide { display: none; width: 100%; height: 100%; }
+    .video-slide.active { display: block; }
+    .video-slide iframe { width: 100%; height: 100%; border-radius: 10px; }
+    .video-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem; max-width: 1200px; margin-left: auto; margin-right: auto; }
+    .video-controls button { background: #0a2342; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer; font-size: 0.9rem; }
+    .video-controls button:hover { background: #153e75; }
+    .slide-container { position: relative; max-width: 700px; margin: 3rem auto; background: #fff; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.1); padding: 2rem; text-align: left; }
+    .slide { display: none; font-size: 1.1rem; line-height: 1.6; }
+    .slide.active { display: block; }
+    .slide h3 { margin-bottom: 1rem; color: #0a2342; }
+    .slide ul { padding-left: 1.5rem; margin-top: 0.5rem; }
+    .slide ul li { margin-bottom: 0.5rem; }
+    .slide-buttons { display: flex; justify-content: space-between; margin-top: 2rem; }
+    .slide-buttons button { background: #0a2342; color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 5px; cursor: pointer; font-size: 1rem; }
+    .slide-buttons button:hover { background: #153e75; }
+    .quiz-container { max-width: 800px; margin: 2rem auto; background: #fff; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.1); padding: 2rem; display: none; }
+    .quiz-container h4 { color: #0a2342; margin-bottom: 1rem; }
+    .quiz-container button.option-btn { display: block; width: 100%; margin: 0.4rem 0; padding: 0.6rem; border: 1px solid #ccc; border-radius: 5px; background: #f9f9f9; cursor: pointer; text-align: left; }
+    .quiz-container button.option-btn:hover { background: #eef6ff; }
+    .quiz-container .next-btn { background: #0a2342; color: white; padding: 0.6rem 1.2rem; border: none; border-radius: 5px; cursor: pointer; margin-top: 1rem; display: none; }
+    .quiz-container .next-btn:hover { background: #153e75; }
+  </style>
+</head>
+<body>
+<header>
+  <a href="index.html" class="logo">📘 Bull&Brain.Com</a>
+  <div class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  <nav id="menu">
+    <div class="dropdown">
+      <a href="#" onclick="toggleDropdown(event)">Learn</a>
+      <div class="dropdown-content">
+        <a href="Introduction.html">Introduction</a>
+        <a href="TypesOfStocks.html">Types of Stocks</a>
+        <a href="HowTradingWorks.html">How Trading Works</a>
+        <a href="MarketPlayers.html">Market Players</a>
+        <a href="RiskAndReward.html">Risk & Reward</a>
+        <a href="InvestingVsTrading.html">Investing vs Trading</a>
+      </div>
+    </div>
+    <a href="Top3Companies.html">Top 3 Companies</a>
+    <a href="weekly-reflection.html">Weekly Reflection</a>
+    <a href="MarketChanges.html">Market Changes</a>
+    <a href="tell-a-friend.html">Tell a Friend</a>
+    <a href="about.html">About Me</a>
+  </nav>
+</header>
+
+<main>
+<h1>💹 How Trading Works</h1>
+  <p>This lesson explains in simple words how trading happens, the types of orders you can use, strategies, and beginner tips.</p>
+  <!-- VIDEO -->
+  <div class="video-slider">
+    <div class="video-slide active">
+      <iframe src="https://www.youtube.com/embed/PFyZv4OFfvs?si=zL6ZzuLfx856JGfY"  frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+  <div class="video-controls">
+    <button onclick="changeVideo(-1)">← Previous</button>
+    <button onclick="changeVideo(1)">Next →</button>
+  </div>
+
+  
+
+  <!-- SLIDES -->
+  <div class="slide-container">
+    <div class="slide active">
+      <h3>📈 Market Orders</h3>
+      <ul>
+        <li>Buy or sell stocks immediately at the current price.</li>
+        <li>Fast and simple for beginners.</li>
+        <li>Good if you want to make quick trades.</li>
+      </ul>
+    </div>
+    <div class="slide">
+      <h3>⏱ Limit Orders</h3>
+      <ul>
+        <li>Set the exact price at which you want to buy or sell.</li>
+        <li>The order happens only if the market reaches that price.</li>
+        <li>Helps control your trades and avoid overpaying.</li>
+      </ul>
+    </div>
+    <div class="slide">
+      <h3>💡 Trading Strategies</h3>
+      <ul>
+        <li>Day trading: buy and sell within the same day.</li>
+        <li>Swing trading: hold for a few days to weeks.</li>
+        <li>Long-term investing: hold for months or years.</li>
+      </ul>
+    </div>
+    <div class="slide">
+      <h3>📝 Tips for Beginners</h3>
+      <ul>
+        <li>Start small and practice before investing big.</li>
+        <li>Do research before buying any stock.</li>
+        <li>Focus on long-term goals, not small price changes.</li>
+        <li>Separate emotions from trading decisions.</li>
+        <li>Use limit orders to avoid overpaying.</li>
+      </ul>
+    </div>
+    <div class="slide-buttons">
+      <button onclick="changeSlide(-1)">← Previous</button>
+      <button onclick="changeSlide(1)">Next →</button>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <button onclick="document.querySelector('.quiz-container').style.display='block'; this.style.display='none';" 
+    style="background:#0a2342; color:white; padding:0.7rem 1.5rem; border:none; border-radius:5px; cursor:pointer; margin-top:2rem;">
+    Start Quiz
+  </button>
+
+  <div class="quiz-container">
+    <h2 style="text-align:center;">📝 How Trading Works Quiz</h2>
+    <div id="quiz-question"></div>
+    <div id="quiz-options"></div>
+    <button class="next-btn" onclick="nextQuestion()">Next</button>
+    <div id="quiz-result" style="text-align:center; margin-top:1rem; font-weight:bold;"></div>
+  </div>
+</main>
+
+<script>
+function toggleMenu(){ document.getElementById("menu").classList.toggle("active"); }
+function toggleDropdown(e){ e.preventDefault(); e.target.parentElement.classList.toggle("show"); }
+
+// Video slider
+let currentVideo = 0;
+const videoSlides = document.querySelectorAll('.video-slide');
+const localVideos = document.querySelectorAll('video');
+function showVideo(index){ videoSlides.forEach((v,i)=>v.classList.toggle('active', i===index)); }
+function changeVideo(direction){ currentVideo = (currentVideo + direction + videoSlides.length) % videoSlides.length; showVideo(currentVideo); }
+function toggleSound(){ localVideos.forEach(v => v.muted = !v.muted); alert("🔊 Works only for local videos."); }
+
+// Slides
+let currentSlide=0;
+const slides=document.querySelectorAll('.slide');
+function showSlide(i){ slides.forEach((s,idx)=>s.classList.toggle('active',idx===i)); }
+function changeSlide(d){ currentSlide=(currentSlide+d+slides.length)%slides.length; showSlide(currentSlide); }
+
+// Quiz
+const quizData=[
+  { q:"Which order is executed immediately at the current price?", opts:["Market Order","Limit Order","Stop Order"], ans:0 },
+  { q:"Which order allows you to set a specific price to buy/sell?", opts:["Market Order","Limit Order","Stop Order"], ans:1 },
+  { q:"Which trading style is for same-day trades?", opts:["Day Trading","Swing Trading","Long-term Investing"], ans:0 },
+  { q:"Which trading style involves holding stocks for months or years?", opts:["Day Trading","Swing Trading","Long-term Investing"], ans:2 },
+  { q:"Which order is good for beginners to make quick trades?", opts:["Market Order","Limit Order","Stop Order"], ans:0 },
+  { q:"Which strategy holds stocks for a few days to weeks?", opts:["Day Trading","Swing Trading","Long-term Investing"], ans:1 },
+  { q:"Which order gives more control over buying price?", opts:["Market Order","Limit Order","Stop Order"], ans:1 },
+  { q:"Which trading style can be risky if done incorrectly?", opts:["Day Trading","Swing Trading","Long-term Investing"], ans:0 },
+  { q:"Which order is safest to avoid paying too much?", opts:["Market Order","Limit Order","Stop Order"], ans:1 },
+  { q:"Which trading style focuses on short-term profits?", opts:["Day Trading","Swing Trading","Long-term Investing"], ans:0 }
+];
+let qIndex=0, score=0;
+const questionEl=document.getElementById("quiz-question");
+const optionsEl=document.getElementById("quiz-options");
+const nextBtn=document.querySelector(".next-btn");
+const resultEl=document.getElementById("quiz-result");
+
+function loadQuestion(){
+  let q=quizData[qIndex];
+  questionEl.innerHTML=`<h4>${q.q}</h4>`;
+  optionsEl.innerHTML="";
+  q.opts.forEach((opt,i)=>{
+    let btn=document.createElement("button");
+    btn.className="option-btn"; btn.textContent=opt;
+    btn.onclick=()=>selectOption(i);
+    optionsEl.appendChild(btn);
+  });
+  nextBtn.style.display="none";
+}
+function selectOption(selected){
+  let correct=quizData[qIndex].ans;
+  document.querySelectorAll(".option-btn").forEach((btn,i)=>{
+    btn.disabled=true;
+    if(i===correct) btn.style.background="#c8f7c5";
+    if(i===selected && selected!==correct) btn.style.background="#f7c5c5";
+  });
+  if(selected===correct) score++;
+  nextBtn.style.display="inline-block";
+}
+function nextQuestion(){
+  qIndex++;
+  if(qIndex<quizData.length){ loadQuestion(); }
+  else {
+    questionEl.style.display="none"; optionsEl.style.display="none"; nextBtn.style.display="none";
+    resultEl.textContent=`You scored ${score} out of ${quizData.length}!`;
+  }
+}
+loadQuestion();
+</script>
+</body>
+</html>
+
